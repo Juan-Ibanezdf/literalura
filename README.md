@@ -1,46 +1,58 @@
+
 # Literalura
-![Badge](https://github.com/vitor-fidelis/literalura/blob/main/imagens/badge%20literalura.png)
+![Badge](https://github.com/Juan-Ibanezdf/literalura/blob/main/imagens/badge%20literalura.png)
 
+Resolução do Desafio Java/Spring Boot para o challenge literalura. Esta aplicação utiliza a API  Gutendex para buscar livros, salvá-los no banco de dados, e consultar os dados armazenados localmente.
 
-Literalura é uma aplicação Java/Spring Boot para amantes de livros. Esta aplicação permite buscar livros, listar livros registrados, listar autores, e muitas outras funcionalidades relacionadas à leitura e organização de livros.
+---
 
-## Funcionalidades
+## 📚 **Funcionalidades**
 
-1. **Buscar livros pelo título**: Consulta a API Gutendex para buscar livros pelo título.
-2. **Listar livros registrados**: Exibe todos os livros registrados no banco de dados.
-3. **Listar autores registrados**: Exibe todos os autores dos livros registrados.
-4. **Listar autores vivos em um determinado ano**: Lista autores que estavam vivos em um ano especificado.
-5. **Listar autores nascidos em determinado ano**: Lista autores que nasceram em um ano especificado.
-6. **Listar autores por ano de sua morte**: Lista autores que morreram em um ano especificado.
-7. **Listar livros em um determinado idioma**: Lista livros registrados no banco de dados em um idioma especificado.
-8. **Encerrar a aplicação**: Encerra o programa.
+1. **Buscar livros por título pela API e salvar**:
+   - Consulta a API Gutendex para buscar livros pelo título.
+   - Exibe os resultados encontrados e salva os livros novos no banco de dados local.
 
-## Tecnologias Utilizadas
+2. **Listar livros registrados**:
+   - Exibe todos os livros já salvos no banco de dados local.
 
-- **Java 17** 
-- **Spring Boot 2.7**
-- **Hibernate**
-- **PostgreSQL**
-- **Gutendex API**
-- **Maven**
+3. **Listar autores registrados**:
+   - Exibe todos os autores registrados no banco de dados.
 
-## Configuração do Projeto
+4. **Listar autores vivos em um determinado ano**:
+   - Mostra autores vivos no ano especificado, baseando-se nas datas de nascimento e falecimento.
+
+5. **Listar autores nascidos em determinado ano**:
+   - Lista autores nascidos no ano especificado.
+
+6. **Listar autores por ano de sua morte**:
+   - Lista autores que faleceram no ano especificado.
+
+7. **Listar livros em um determinado idioma**:
+   - Exibe livros registrados no banco de dados em um idioma específico.
+
+8. **Encerrar a aplicação**:
+   - Encerra o programa.
+
+OBS: Da Opção 2 em diante, é necessário já ter algum livro salvo, de preferencia 2 livros.
+
+---
+## 🔧 **Configuração do Projeto**
 
 ### Pré-requisitos
 
-- Java 17 ou superior
-- Maven
-- PostgreSQL
+- **Java 17** ou superior
+- **Maven**
+- **PostgreSQL**
 
 ### Instalação
 
-1. Clone o repositório:
+1. **Clone o repositório**:
    ```bash
    git clone https://github.com/seu-usuario/literalura.git
    cd literalura
    ```
 
-2. Configure o banco de dados no arquivo `application.properties`:
+2. **Configure o banco de dados no arquivo `application.properties`**:
    ```properties
    spring.datasource.url=jdbc:postgresql://localhost:5432/literalura
    spring.datasource.username=seu-usuario
@@ -49,90 +61,94 @@ Literalura é uma aplicação Java/Spring Boot para amantes de livros. Esta apli
    spring.jpa.show-sql=true
    ```
 
-3. Execute o projeto:
+3. **Crie o banco de dados chamado `literalura`**:
+   ```sql
+   CREATE DATABASE literalura;
+   ```
+
+4. **Execute o projeto**:
    ```bash
    mvn spring-boot:run
    ```
 
-## Estrutura do Projeto
+---
 
-- `br.com.alura.literalura`: Pacote principal do projeto.
-  - `principal`: Contém a classe `Principal`, que gerencia a execução da aplicação.
-  - `model`: Contém as classes de modelo (`Livro`, `Autor`, `LivroDTO`, `AutorDTO`).
-  - `repository`: Contém as interfaces de repositório Spring Data JPA.
-  - `service`: Contém as classes de serviço (`ConsumoAPI`, `ConverteDados`).
+## 🧪 **Sugestão para Testes**
 
-## Uso
+- Adicione registros iniciais ao banco de dados para testar as funcionalidades locais:
+  - Livro 1:
+    - Título: **"O Cortiço"**
+    - Autor: **"Aluísio Azevedo"**
+    - Idioma: **"pt"**
+    - Downloads: **1000**
+  - Livro 2:
+    - Título: **"The Great Gatsby"**
+    - Autor: **"F. Scott Fitzgerald"**
+    - Idioma: **"en"**
+    - Downloads: **5000**
 
-Ao iniciar a aplicação, o menu principal será exibido com as opções disponíveis. Basta seguir as instruções na tela para navegar pelas funcionalidades.
+  **Comandos SQL para inserção:**
+  ```sql
+  INSERT INTO autores (autor, ano_nascimento, ano_falecimento) VALUES ('Aluísio Azevedo', 1857, 1913);
+  INSERT INTO autores (autor, ano_nascimento, ano_falecimento) VALUES ('F. Scott Fitzgerald', 1896, 1940);
 
-### Exemplo de Uso
-
-1. **Buscar livros pelo título**:
-   - Digite `1` e pressione Enter.
-   - Insira o título do livro que deseja buscar.
-   - A aplicação fará uma consulta à API Gutendex e exibirá os resultados encontrados.
-
-2. **Listar livros registrados**:
-   - Digite `2` e pressione Enter.
-   - A aplicação listará todos os livros registrados no banco de dados.
-
-3. **Listar autores registrados**:
-   - Digite `3` e pressione Enter.
-   - A aplicação listará todos os autores dos livros registrados.
-
-4. **Listar autores vivos em um determinado ano**:
-   - Digite `4` e pressione Enter.
-   - Insira o ano desejado.
-   - A aplicação listará os autores que estavam vivos naquele ano.
-
-5. **Listar autores nascidos em determinado ano**:
-   - Digite `5` e pressione Enter.
-   - Insira o ano desejado.
-   - A aplicação listará os autores que nasceram naquele ano.
-
-6. **Listar autores por ano de sua morte**:
-   - Digite `6` e pressione Enter.
-   - Insira o ano desejado.
-   - A aplicação listará os autores que morreram naquele ano.
-
-7. **Listar livros em um determinado idioma**:
-   - Digite `7` e pressione Enter.
-   - Insira o código do idioma desejado (por exemplo, `en` para Inglês, `pt` para Português).
-   - A aplicação listará todos os livros registrados no banco de dados naquele idioma.
-
-8. **Encerrar a aplicação**:
-   - Digite `0` e pressione Enter.
-   - A aplicação será encerrada.
-
-## Contribuição
-
-Se você deseja contribuir para o projeto, siga os passos abaixo:
-
-1. Fork o repositório.
-2. Crie uma nova branch: `git checkout -b minha-feature`.
-3. Faça suas alterações e commite-as: `git commit -m 'Minha nova feature'`.
-4. Envie para o repositório original: `git push origin minha-feature`.
-5. Abra um Pull Request.
-
-## Licença
-
-Este projeto está licenciado sob a MIT License. Veja o arquivo `LICENSE` para mais detalhes.
-
-## Contato
-
-Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato.
+  INSERT INTO livros (titulo, idioma, numero_downloads, autor_id) VALUES ('O Cortiço', 'pt', 1000, 1);
+  INSERT INTO livros (titulo, idioma, numero_downloads, autor_id) VALUES ('The Great Gatsby', 'en', 5000, 2);
+  ```
 
 ---
 
-## Imagens da aplicação em funcionamento
+## 🚀 **Uso**
 
-![img](https://github.com/vitor-fidelis/literalura/blob/94bde8826b6be879fd89b3866bd793f065572c9d/imagens/imagens/Captura%20de%20ecr%C3%A3%202024-06-03%20155941.png)
-![img](https://github.com/vitor-fidelis/literalura/blob/94bde8826b6be879fd89b3866bd793f065572c9d/imagens/imagens/Captura%20de%20ecr%C3%A3%202024-06-01%20195448.png)
-![img](https://github.com/vitor-fidelis/literalura/blob/94bde8826b6be879fd89b3866bd793f065572c9d/imagens/imagens/Captura%20de%20ecr%C3%A3%202024-06-01%20195525.png)
-![img](https://github.com/vitor-fidelis/literalura/blob/main/imagens/imagens/Captura%20de%20ecr%C3%A3%202024-06-01%20195615.png)
-![img](https://github.com/vitor-fidelis/literalura/blob/94bde8826b6be879fd89b3866bd793f065572c9d/imagens/imagens/Captura%20de%20ecr%C3%A3%202024-06-03%20174736.png)
+1. **Inicie a aplicação** e siga o menu principal exibido.
+2. Escolha uma opção para executar a funcionalidade desejada.
 
+### **Exemplos de Uso**
 
+- **Buscar livros por título**:
+  - Digite `1` e pressione Enter.
+  - Insira o título do livro que deseja buscar.
+  - A aplicação consultará a API Gutendex, exibirá os resultados encontrados e salvará livros novos no banco.
 
-Espero que você aproveite esta aplicação e que ela seja útil para suas necessidades literárias!
+- **Listar livros registrados**:
+  - Digite `2` e pressione Enter.
+  - A aplicação exibirá todos os livros registrados localmente.
+
+- **Listar autores registrados**:
+  - Digite `3` e pressione Enter.
+  - A aplicação exibirá todos os autores registrados.
+
+- **Listar autores vivos em um ano**:
+  - Digite `4`, insira o ano desejado, e pressione Enter.
+  - A aplicação exibirá os autores vivos naquele ano.
+
+---
+
+## 🛠️ **Estrutura do Projeto**
+
+- **Pacote principal (`br.com.alura.literalura`)**:
+  - `principal`: Contém a classe `Principal`, que gerencia a aplicação.
+  - `model`: Define as entidades do banco de dados (`Livro`, `Autor`) e objetos de transferência de dados (`LivroDTO`, `AutorDTO`).
+  - `repository`: Contém as interfaces de repositório Spring Data JPA.
+  - `service`: Contém classes de serviço para manipulação de dados e integração com a API.
+
+---
+
+## 🤝 **Contribuição**
+
+Contribuições são bem-vindas! Para contribuir:
+
+1. Faça um fork do repositório.
+2. Crie uma branch para sua feature: `git checkout -b minha-feature`.
+3. Commit suas mudanças: `git commit -m 'Adicionando minha feature'`.
+4. Push para sua branch: `git push origin minha-feature`.
+5. Crie um Pull Request.
+
+---
+
+## 📝 **Licença**
+
+Este projeto está licenciado sob a MIT License. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
